@@ -201,3 +201,22 @@ body:not(.music-started) p {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
+
+/* Message appears after click */
+.message {
+  position: fixed;
+  top: 60%; /* slightly below her name */
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  font-size: 28px;
+  color: #fff;
+  opacity: 0;
+  transition: 2s ease;
+  text-shadow: 0 0 15px rgba(255,255,255,0.7);
+  pointer-events: none;
+}
+
+.music-started .message {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
