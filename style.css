@@ -26,3 +26,178 @@ p{
     background-position: center;
     letter-spacing: 0.1px;
 }
+
+#playBtn {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 18px 40px;
+  font-size: 16px;
+  letter-spacing: 1px;
+
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 40px;
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  cursor: pointer;
+  transition: 0.3s ease;
+
+  animation: fadeIn 2s ease forwards;
+  opacity: 0;
+}
+
+/* Soft hover effect (for laptop) */
+#playBtn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+@keyframes fadeIn {
+  to {
+      opacity: 1;
+  }
+}
+
+/* Smooth transition */
+p {
+  transition: filter 1.5s ease;
+}
+
+/* Blur BEFORE music starts */
+body:not(.music-started) p {
+  filter: blur(2px) brightness(0.8);
+}
+
+/* Flower container */
+.flowers {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Individual flowers */
+.flowers span {
+  position: absolute;
+  font-size: 24px;
+  animation: float 10s linear infinite;
+  opacity: 0.8;
+}
+
+/* Random positions */
+.flowers span:nth-child(1) { left: 10%; animation-duration: 12s; }
+.flowers span:nth-child(2) { left: 25%; animation-duration: 9s; }
+.flowers span:nth-child(3) { left: 45%; animation-duration: 14s; }
+.flowers span:nth-child(4) { left: 65%; animation-duration: 11s; }
+.flowers span:nth-child(5) { left: 80%; animation-duration: 13s; }
+.flowers span:nth-child(6) { left: 55%; animation-duration: 10s; }
+
+/* Floating animation */
+@keyframes float {
+  0% {
+      transform: translateY(100vh) rotate(0deg);
+      opacity: 0;
+  }
+  10% {
+      opacity: 1;
+  }
+  100% {
+      transform: translateY(-10vh) rotate(360deg);
+      opacity: 0;
+  }
+}
+
+/* Hide flowers after music starts */
+.music-started .flowers {
+  display: none;
+}
+
+/* ================= PETALS FALLING ================= */
+
+.petals {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  transition: opacity 2s ease;
+}
+
+.petals span {
+  position: absolute;
+  top: -10vh;
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% {
+      transform: translateY(-10vh) rotate(0deg);
+  }
+  100% {
+      transform: translateY(110vh) rotate(360deg);
+  }
+}
+
+/* ================= SPARKLES ================= */
+
+.sparkles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: opacity 2s ease;
+}
+
+.sparkles span {
+  position: absolute;
+  font-size: 14px;
+  animation: sparkle 4s ease-in-out infinite;
+  opacity: 0.7;
+}
+
+.sparkles span:nth-child(1){ top:20%; left:30%; }
+.sparkles span:nth-child(2){ top:40%; left:60%; }
+.sparkles span:nth-child(3){ top:70%; left:40%; }
+.sparkles span:nth-child(4){ top:30%; left:80%; }
+
+@keyframes sparkle {
+  0%,100% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ================= HER NAME ================= */
+
+.herName {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  font-size: 40px;
+  color: white;
+  opacity: 0;
+  transition: 2s ease;
+  text-shadow: 0 0 20px rgba(255,255,255,0.8);
+  pointer-events: none;
+}
+
+/* ================= TRANSITION AFTER CLICK ================= */
+
+.music-started .petals {
+  opacity: 0;
+}
+
+.music-started .sparkles {
+  opacity: 0;
+}
+
+.music-started .herName {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
